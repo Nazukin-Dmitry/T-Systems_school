@@ -1,7 +1,52 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1" metadata-complete="true">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <display-name>LogiWeb</display-name>
+
+    <servlet>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>com.tsystems.nazukin.logiweb.controller.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/page/*</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>FilterManager</filter-name>
+        <filter-class>com.tsystems.nazukin.logiweb.controller.filters.LoginFilterManager</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FilterManager</filter-name>
+        <url-pattern>/page/manager/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>FilterDriver</filter-name>
+        <filter-class>com.tsystems.nazukin.logiweb.controller.filters.LoginFilterDriver</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FilterDriver</filter-name>
+        <url-pattern>/page/driver/*</url-pattern>
+    </filter-mapping>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+
+    <welcome-file-list>
+        <welcome-file>page/home</welcome-file>
+    </welcome-file-list>
 </web-app>
