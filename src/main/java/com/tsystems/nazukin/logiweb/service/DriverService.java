@@ -71,8 +71,8 @@ public class DriverService {
      * Make and saves driver from specified employee. Sets driver's work time to 0, status to 'FREE'.
      * Generates driver's serial number.
      *
-     * @param employeeId - employee's id
-     * @param cityId     - city's id
+     * @param employeeId  employee's id
+     * @param cityId      city's id
      */
     public void save(Integer employeeId, Integer cityId) {
         try {
@@ -81,6 +81,7 @@ public class DriverService {
             CityEntity cityEntity = cityDao.findById(CityEntity.class, cityId);
             EmployeeEntity employeeEntity = employeeDao.findById(EmployeeEntity.class, employeeId);
             Integer serialNumber = driverDao.maxSerialNumber();
+
             if (serialNumber == null) {
                 serialNumber = 0;
             }
@@ -90,8 +91,8 @@ public class DriverService {
             driverEntity.setStatus(DriverStatus.FREE);
             driverEntity.setWorkTime(0);
             driverEntity.setSerialNumber(serialNumber + 1);
-
             employeeEntity.setEmployeeType(EmployeeType.DRIVER);
+
             driverDao.save(driverEntity);
             JPAUtil.commitTransaction();
         } finally {
@@ -172,6 +173,7 @@ public class DriverService {
         try {
             JPAUtil.beginTransaction();
             DriverEntity entity = driverDao.findById(DriverEntity.class, id);
+
             ///check that driver don't have any order now
             if (entity.getCurrentOrder() != null) {
                 throw new DriverAllreadyUsedException();

@@ -39,7 +39,7 @@ public class GetDriversEditPageAction implements com.tsystems.nazukin.logiweb.co
         if (type != null) {
             switch (type) {
                 case TYPE_ERROR_DELETE:
-                    error = "Unable to remove the truck, it is used in order.";
+                    error = "Unable to remove the driver, it is used in order.";
                     break;
                 default:
                     error = "";
